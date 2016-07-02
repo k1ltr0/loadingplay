@@ -29,8 +29,7 @@
 		                <i class="ti-email">&nbsp;</i>
 		                <span class="sub">contacto@loadingplay.cl</span>
 		            </div>
-		            <div class="module right">
-		                <a class="btn btn-sm" href="#purchase-template">Buy Now</a>
+		            <div class="module right shopping-cart">
 		            </div>
 		        </div>
 		        <div class="text-center">
@@ -146,47 +145,7 @@
 			<section>
 				<div class="container">
 					<div class="product-single">
-						<div class="row mb24 mb-xs-48">
-							<div class="col-md-5 col-sm-6">
-								<div class="image-slider slider-thumb-controls controls-inside">
-									<span class="label">Sale</span>
-									<ul class="slides">
-										<li>
-											<img alt="Image" src="img/app4.jpg">
-										</li>
-										<li>
-											<img alt="Image" src="img/phone2.png">
-										</li>
-										<li>
-											<img alt="Image" src="img/shop-product-4_2.jpg">
-										</li>
-									</ul>
-								</div>
-								
-							</div>
-							<div class="col-md-5 col-md-offset-1 col-sm-6">
-								<div class="description">
-									<h4 class="uppercase">diseño de software ios &amp; android</h4>
-									<div class="mb32 mb-xs-24">
-										<span class="number price old-price">$150.000</span>
-										<span class="number price">$119.000</span>
-									</div>
-									<p>
-										Diseña tu software para tu negocio con nosotros. Cuéntanos sobre lo que necesitas y&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut imperdiet ante eu orci egestas bibendum. Nullam eget dapibus mauris. Nullam augue metus.</p>
-									<ul>
-										<li>
-											<strong>SKU:</strong> 8660</li>
-										<li><strong>TIPO SOFTWARE:</strong> SaaS, Dashboard</li>
-										<li>
-											<strong>SIZES:</strong> XS,S,M,L,XL</li>
-									</ul>
-								</div>
-								<hr class="mb48 mb-xs-24">
-								<form class="add-to-cart">
-									<input type="text" placeholder="QTY">
-									<input type="submit" value="Add To Cart">
-								</form>
-							</div>
+						<div class="row mb24 mb-xs-48 product-detail">
 						</div>
 						
 						<div class="row">
@@ -353,12 +312,73 @@
 			</footer>
 		</div>
 		
-				
 	<script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/flexslider.min.js"></script>
         <script src="js/parallax.js"></script>
         <script src="js/scripts.js"></script>
+
+        <script type="text/template" id="shopping-cart-total" >
+
+            <a class="btn btn-sm" href="https://checkout.loadingplay.com?site_id={{site_id}}&cart_id={{cart_id}}&session_id={{ session_id }}&success_url={{ success_url }}&failure_url={{failure_url}}&webpay_url={{webpay_url}}">
+                {{ total|money }} pagar
+            </a>
+        </script>
+
+        <script type="text/template" id="product_detail" >
+            <div class="col-md-5 col-sm-6">
+                <div class="image-slider slider-thumb-controls controls-inside">
+                    <span class="label">Sale</span>
+                    <ul class="slides">
+                        <li>
+                            <img alt="Image" src="{{ images[0][1] }}">
+                        </li>
+                        <li>
+                            <img alt="Image" src="{{ images[1][1] }}">
+                        </li>
+                        <li>
+                            <img alt="Image" src="{{ images[1][1] }}">
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+            <div class="col-md-5 col-md-offset-1 col-sm-6">
+                <div class="description">
+                    <h4 class="uppercase">{{ name }}</h4>
+                    <div class="mb32 mb-xs-24">
+                        <span class="number price old-price">{{ main_price|money }}</span>
+                        <span class="number price">{{ main_price|money }}</span>
+                    </div>
+                    <div>
+                        {{ description }}
+                    </div>
+                </div>
+                <hr class="mb48 mb-xs-24">
+                <button type="submit" product-id="{{ id }}" product-name="{{ name }}" product-price="{{ main_price }}" product-upp="{{ upp }}" class="add-to-cart " >Add To Cart</button>
+            </div>
+        </script>
+        <script type="text/javascript" src="bower_components/jquery.cookie/jquery.cookie.js"></script>
+        <script type="text/javascript" src="bower_components/bodegas.cliente.js/dist/bodegas.client.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function()
+            {
+                $(document).ecommerce('product_detail', {
+                    'app_public' : 8,
+                    'products_per_page' : 9,
+                    'base_url' : 'https://apibodegas.loadingplay.com/',
+                    'checkout_url' : 'https://checkout.loadingplay.com/',
+                    'container' : '.product-detail',
+                    'onLoad' : function(products)
+                    {
+                        // some code to init slider....
+                    }
+                });
+
+            });
+        </script>
+
+
     </body>
 </html>
 				

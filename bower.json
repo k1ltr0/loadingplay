@@ -1,0 +1,21 @@
+{
+  "name": "kyochung",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "ricardo <ricardo@loadingplay.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/kyochung/loadingplay",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bodegas.cliente.js": "http://gogs.ondev.today/loadingplay/bodegas.cliente.js.git"
+  }
+}
