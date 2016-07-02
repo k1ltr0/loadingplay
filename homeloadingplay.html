@@ -12,6 +12,7 @@
         <link href="css/theme.css" rel="stylesheet" type="text/css" media="all" />
         <link href="css/custom.css" rel="stylesheet" type="text/css" media="all" />
         <link href='http://fonts.googleapis.com/css?family=Lato:300,400%7CRaleway:100,400,300,500,600,700%7COpen+Sans:400,500,600' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="bower_components/bodegas.cliente.js/dist/bodegas.client.css">
     </head>
     <body>
 				
@@ -170,73 +171,7 @@
 		                <div class="spinner"></div>
 		            </div>
 		        </div>
-		        <div class="row masonry masonryFlyIn">
-		            <div class="col-md-4 col-sm-6 masonry-item project" data-filter="People">
-		                <div class="image-tile inner-title hover-reveal text-center">
-		                    <a href="products.html">
-		                        <img alt="Pic" src="img/web design.jpg">
-		                        <div class="title">
-		                            <h5 class="uppercase mb0">diseño web</h5>
-		                            <span>Desde CLP$100.000</span>
-		                        </div>
-		                    </a>
-		                </div>
-		            </div>
-		            
-		            <div class="col-md-4 col-sm-6 masonry-item project" data-filter="People">
-		                <div class="image-tile inner-title hover-reveal text-center">
-		                    <a href="products2.html">
-		                        <img alt="Pic" src="img/App design.jpg">
-		                        <div class="title">
-		                            <h5 class="uppercase mb0">Desarrollo app ios &amp; Android</h5>
-		                            <span>Precio desde CLP$250.000</span>
-		                        </div>
-		                    </a>
-		                </div>
-		            </div>
-		            <div class="col-md-4 col-sm-6 masonry-item project" data-filter="Objects">
-		                <div class="image-tile inner-title hover-reveal text-center">
-		                    <a href="products3.html">
-		                        <img alt="Pic" src="img/marketing campaign.jpg">
-		                        <div class="title">
-		                            <h5 class="uppercase mb0">Campañas de marketing</h5>
-		                            <span>Precio desde CLP$100.000</span>
-		                        </div>
-		                    </a>
-		                </div>
-		            </div>
-		            <div class="col-md-4 col-sm-6 masonry-item project" data-filter="Objects">
-		                <div class="image-tile inner-title hover-reveal text-center">
-		                    <a href="products.html">
-		                        <img alt="Pic" src="img/Video-Editing.jpg">
-		                        <div class="title">
-		                            <h5 class="uppercase mb0">Diseño videos</h5>
-		                            <span>Precios desde CLP$80.000</span>
-		                        </div>
-		                    </a>
-		                </div>
-		            </div><div class="col-md-4 col-sm-6 masonry-item project" data-filter="Objects">
-		                <div class="image-tile inner-title hover-reveal text-center">
-		                    <a href="products2.html">
-		                        <img alt="Pic" src="img/logo.jpg">
-		                        <div class="title">
-		                            <h5 class="uppercase mb0">Diseño LOGO &amp; IMAGEN</h5>
-		                            <span>Precios desde CLP$50.000</span>
-		                        </div>
-		                    </a>
-		                </div>
-		            </div>
-		            <div class="col-md-4 col-sm-6 masonry-item project" data-filter="People">
-		                <div class="image-tile inner-title hover-reveal text-center">
-		                    <a href="products3.html">
-		                        <img alt="Pic" src="img/app4.jpg">
-		                        <div class="title">
-		                            <h5 class="uppercase mb0">Desarrollo software</h5>
-		                            <span>Precio desde CLP$500.000</span>
-		                        </div>
-		                    </a>
-		                </div>
-		            </div>
+		        <div class="row masonry masonryFlyIn products">
 		        </div>
 		        
 		    </section><section class="bg-secondary">
@@ -309,6 +244,38 @@
         <script src="js/masonry.min.js"></script>
         <script src="js/parallax.js"></script>
         <script src="js/scripts.js"></script>
+
+        <script type="text/template" id="product_template" >
+            <div class="col-md-4 col-sm-6 masonry-item project" data-filter="People">
+                <div class="image-tile inner-title hover-reveal text-center">
+                    <a href="products.html?id={{ id }}">
+                        <img alt="Pic" src="{{ images[0][1] }}" >
+                        <div class="title">
+                            <h5 class="uppercase mb0">{{ name }}</h5>
+                            <span>Desde CLP{{ main_price|money }}</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/javascript" src="bower_components/jquery.cookie/jquery.cookie.js"></script>
+        <script type="text/javascript" src="bower_components/bodegas.cliente.js/dist/bodegas.client.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function()
+            {
+                $(document).ecommerce({
+                    'app_public' : 8,
+                    'products_per_page' : 9,
+                    'base_url' : 'https://apibodegas.loadingplay.com/',
+                    'checkout_url' : 'https://apibodegas.loadingplay.com/',
+                    'onLoad' : function(products)
+                    {
+                        console.log(products);
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
 				
