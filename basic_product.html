@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+    <!-- CHECKOUT -->
+    <div class="shopping-cart" ></div>
+
+    <script type="text/template" id="shopping-cart-total" >
+        <a class="btn btn-sm" href="https://checkout.loadingplay.com?site_id={{ site_id }}&cart_id={{ cart_id }}">
+            {{ upp_total }} pagar
+        </a>
+    </script>
+
+
+
+    <!-- PRODUCTO -->
+    <div class="product-detail" >
+        <!-- en esta caja quedan los productos -->
+    </div>
+
+    <!-- Plantilla de productos -->
+    <script type="text/template" id="product_detail" >
+        <div>
+            <div>
+                <img style="width:500px;height:500px" src="{{ images[0]['thumb_200'] }}" onload="this.src='{{ images[0]['thumb_500'] }}'">
+            </div>
+
+            <!-- boton basico para agregar al carro -->
+            <button product-id="{{ id }}" product-name="{{ name }}" product-price="{{ main_price }}" product-upp="{{ upp }}" class="add-to-cart " >Add To Cart</button>
+
+            <!-- descripcion del producto -->
+            <div>{{name}}</div>
+            <div>{{ main_price|money }}</div>
+            <div>{{ description }}</div>
+
+        </div>
+    </script>
+    <!-- PRODUCTO -->
+
+
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/jquery.cookie/jquery.cookie.js"></script>
+    <script type="text/javascript" src="bower_components/bodegas.cliente.js/dist/bodegas.client.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(document).ecommerce('product_detail', {
+                'app_public' : 8,
+                'base_url' : 'https://apibodegas.loadingplay.com/',
+                'container' : '.product-detail',
+                'onLoad' : function(products)
+                {
+                    console.log(products);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
